@@ -118,16 +118,37 @@ def getDocumentNumberDetails(rblDocType, ddldistrictfordoc, ddlSROName, ddlYearF
           }
 
           r5= s.post(
-          url,
-          headers=headers, cookies=cookies,
-          data=data,
+               url,
+               headers=headers, cookies=cookies,
+               data=data,
           )
           finalView = BeautifulSoup(r5.text, "html.parser")
-          resultTable = finalView.find_all(id="RegistrationGrid")
-     
-          return resultTable
-     
-     # print(r5.content)
-     
-     # print(r5.content)
-# r.cookies.get_dict()
+          resultTable = finalView.find_all(id="RegistrationGrid")[0]
+          tableHeaders = resultTable.find_all("th")
+          tableData = resultTable.find_all("td")
+          tableHeaderTexts = []
+          for data in tableHeaders:
+               tableHeaderTexts.append(data.text)
+          
+          tableDataTexts = []
+          for data in tableData:
+               tableDataTexts.append(data.text)
+               
+          tableHeaderTexts.pop()
+          print(tableHeaderTexts)
+               
+          records = []
+          # for data in tableData:
+          #      newObj={}
+               # for l, n in zip(letters, numbers):
+               # for th,i in tableHeaderTexts:
+               #      newObj={**newObj,th:data[i]}
+               # records.append()
+               # print(data)
+          # print(records)
+          record={}
+          for th, td in zip(tableHeaderTexts, tableDataTexts):
+               record={**record,th:td}
+          
+          return record
+          # return resultTable
