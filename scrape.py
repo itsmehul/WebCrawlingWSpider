@@ -135,17 +135,7 @@ def getDocumentNumberDetails(rblDocType, ddldistrictfordoc, ddlSROName, ddlYearF
                tableDataTexts.append(data.text)
                
           tableHeaderTexts.pop()
-          print(tableHeaderTexts)
-               
-          records = []
-          # for data in tableData:
-          #      newObj={}
-               # for l, n in zip(letters, numbers):
-               # for th,i in tableHeaderTexts:
-               #      newObj={**newObj,th:data[i]}
-               # records.append()
-               # print(data)
-          # print(records)
+          
           record={}
           for th, td in zip(tableHeaderTexts, tableDataTexts):
                record={**record,th:td}
